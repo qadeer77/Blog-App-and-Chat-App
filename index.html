@@ -22,21 +22,58 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="center">
+    <div class="center" id="login">
       <h1>Login</h1>
-      <form method="post">
+      <form id="form1" method="post">
         <div class="txt_field">
-          <input type="email" required />
+          <input id="email" type="email" required />
           <span></span>
           <label>Eamil</label>
         </div>
         <div class="txt_field">
-          <input type="password" required />
+          <input id="password" type="password" required />
           <span></span>
           <label>Password</label>
         </div>
-        <input type="submit" value="Login" />
-        <div class="signup_link">Not a memeber? <a href="#">Signup</a></div>
+        <input id="loginSubmit" type="submit" value="Login" />
+        <div class="signup_link">
+          Not a memeber? <a id="anker1" href="#">Signup</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="center1" id="signup">
+      <h1>SignUp</h1>
+      <form method="post">
+        <div class="txt_field">
+          <input id="name" type="text" required />
+          <span></span>
+          <label>Full Name</label>
+        </div>
+        <div class="txt_field">
+          <input id="fatherName" type="text" required />
+          <span></span>
+          <label>Father Name</label>
+        </div>
+        <div class="txt_field">
+          <input id="date" type="date" required />
+          <span></span>
+          <!-- <label>Date Of Birth</label> -->
+        </div>
+        <div class="txt_field">
+          <input id="email1" type="email" required />
+          <span></span>
+          <label>Eamil</label>
+        </div>
+        <div class="txt_field">
+          <input id="password1" type="password" required />
+          <span></span>
+          <label>Password</label>
+        </div>
+        <input id="signUpSubmit" type="submit" value="Login" />
+        <div class="signup_link">
+          If You are already an account?<a id="anker2" href="#">Login</a>
+        </div>
       </form>
     </div>
 
@@ -45,5 +82,7 @@
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
+    <script src="app.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </body>
 </html>
