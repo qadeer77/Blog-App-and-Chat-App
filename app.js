@@ -1,3 +1,33 @@
+// Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+import {
+  doc,
+  setDoc,
+  getDoc,
+  getFirestore,
+} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDXkLRIwYe2qWYcvsx4qiq7eX4yq_ZmXAg",
+  authDomain: "chat-app-82a8c.firebaseapp.com",
+  projectId: "chat-app-82a8c",
+  storageBucket: "chat-app-82a8c.appspot.com",
+  messagingSenderId: "793743605728",
+  appId: "1:793743605728:web:d1f707f130fcd9e10f3585",
+  measurementId: "G-9MCNHFP8XW",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore();
+
 let signup = document.getElementById("signup");
 let login = document.getElementById("login");
 let anker1 = document.getElementById("anker1");
@@ -46,8 +76,27 @@ loginSubmit.addEventListener("click", () => {
     !emptyPasswordRegix &&
     passwordRegix
   ) {
-    email.value = "";
-    password.value = "";
+    signInWithEmailAndPassword(auth, email.value, password.value)
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+        const docRef = doc(db, "user", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        swal(
+          "Warning!",
+          "User Not Found please you are go and registered your account!",
+          "error"
+        );
+      });
   }
 });
 
@@ -58,6 +107,7 @@ let fatherName = document.getElementById("fatherName");
 let date = document.getElementById("date");
 let email1 = document.getElementById("email1");
 let password1 = document.getElementById("password1");
+let loader1 = document.getElementById("loader1");
 
 signUpSubmit.addEventListener("click", () => {
   event.preventDefault();
@@ -118,10 +168,40 @@ signUpSubmit.addEventListener("click", () => {
     !passwordRegix &&
     passwordRegix2
   ) {
-    name.value = "";
-    fatherName.value = "";
-    date.value = "";
-    email1.value = "";
-    password1.value = "";
+    createUserWithEmailAndPassword(auth, email1.value, password1.value)
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+        await setDoc(doc(db, "user", user.uid), {
+          FullName: name.value,
+          FatherName: fatherName.value,
+          DateOfBirth: date.value,
+          EmailAddress: email1.value,
+          Password: password1.value,
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        swal("Warning!", "You have already Registered!", "error");
+      });
+
+    signup.style.display = "none";
+    loader1.style.display = "block";
+
+    setTimeout(() => {
+      loader1.style.display = "none";
+      login.style.display = "block";
+    }, 3000);
   }
 });
+
+window.onload = async () => {
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+    } else {
+      console.log("not login");
+    }
+  });
+};
