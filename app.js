@@ -12,7 +12,15 @@ import {
   setDoc,
   getDoc,
   getFirestore,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDXkLRIwYe2qWYcvsx4qiq7eX4yq_ZmXAg",
@@ -107,9 +115,10 @@ let fatherName = document.getElementById("fatherName");
 let date = document.getElementById("date");
 let email1 = document.getElementById("email1");
 let password1 = document.getElementById("password1");
+let fileUplaod = document.getElementById("file");
 let loader1 = document.getElementById("loader1");
 
-signUpSubmit.addEventListener("click", () => {
+signUpSubmit.addEventListener("click", async () => {
   event.preventDefault();
 
   const nameRegix = /^\s*$/.test(name.value);
@@ -192,16 +201,55 @@ signUpSubmit.addEventListener("click", () => {
       loader1.style.display = "none";
       login.style.display = "block";
     }, 3000);
+
+    let file = fileUplaod.files[0];
+    let url = await uploadFiles(file);
+
+    const washingtonRef = doc(db, "user", auth.currentUser.uid);
+    await updateDoc(washingtonRef, {
+      Profile: url,
+    });
   }
 });
 
 window.onload = async () => {
-  const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
     } else {
       console.log("not login");
     }
+  });
+};
+
+const uploadFiles = (file) => {
+  return new Promise((resolve, reject) => {
+    const storage = getStorage();
+    const storageRef = ref(storage, `users/${auth.currentUser.uid}.png`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+        }
+      },
+      (error) => {
+        reject(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          resolve(downloadURL);
+        });
+      }
+    );
   });
 };
