@@ -212,20 +212,11 @@ signUpSubmit.addEventListener("click", async () => {
   }
 });
 
-window.onload = async () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-    } else {
-      console.log("not login");
-    }
-  });
-};
-
 const uploadFiles = (file) => {
   return new Promise((resolve, reject) => {
     const storage = getStorage();
     const storageRef = ref(storage, `users/${auth.currentUser.uid}.png`);
+    console.log(storageRef);
     const uploadTask = uploadBytesResumable(storageRef, file);
     uploadTask.on(
       "state_changed",
@@ -251,5 +242,16 @@ const uploadFiles = (file) => {
         });
       }
     );
+  });
+};
+
+
+window.onload = async () => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+    } else {
+      console.log("not login");
+    }
   });
 };
