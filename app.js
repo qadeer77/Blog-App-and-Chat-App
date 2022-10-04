@@ -216,7 +216,6 @@ const uploadFiles = (file) => {
   return new Promise((resolve, reject) => {
     const storage = getStorage();
     const storageRef = ref(storage, `users/${auth.currentUser.uid}.png`);
-    console.log(storageRef);
     const uploadTask = uploadBytesResumable(storageRef, file);
     uploadTask.on(
       "state_changed",
