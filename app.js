@@ -29,7 +29,7 @@ const firebaseConfig = {
   storageBucket: "chat-app-82a8c.appspot.com",
   messagingSenderId: "793743605728",
   appId: "1:793743605728:web:d1f707f130fcd9e10f3585",
-  measurementId: "G-9MCNHFP8XW",
+  measurementId: "G-9MCNHFP8XW"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -41,20 +41,21 @@ let login = document.getElementById("login");
 let anker1 = document.getElementById("anker1");
 let anker2 = document.getElementById("anker2");
 let all = document.getElementById("all");
-let profileButton = document.getElementById("profileButton");
+// let profileButton = document.getElementById("profileButton");
 
-
-profileButton.addEventListener("click", () => {
-  all.style.display = "none";
-  window.location.href = "./#index2.html"
-})
+const profile = () => {
+  window.location.href = "./index2.html"
+}
+window.profile = profile;
 
 anker1.addEventListener("click", () => {
+  event.preventDefault();
   login.style.display = "none";
   signup.style.display = "block";
 });
 
 anker2.addEventListener("click", () => {
+  event.preventDefault()
   signup.style.display = "none";
   login.style.display = "block";
 });
@@ -97,7 +98,6 @@ loginSubmit.addEventListener("click", () => {
         const user = userCredential.user;
         const docRef = doc(db, "user", user.uid);
         const docSnap = await getDoc(docRef);
-        
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
           login.style.display = "none";

@@ -24,8 +24,9 @@
       href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Baloo+Bhaijaan+2&family=Roboto:wght@300&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   </head>
-  <body>
+  <body id="loginpage">
     <div class="center" id="login">
       <h1>Login</h1>
       <form id="form1" method="post">
@@ -39,7 +40,8 @@
           <span></span>
           <label>Password</label>
         </div>
-        <input id="loginSubmit" type="submit" value="Login" />
+        <!-- <input id="loginSubmit" type="button" value="Login" /> -->
+        <button id="loginSubmit"  type="button" class="btn btn-primary typebutton">SignUp</button>
         <div class="signup_link">
           Not a memeber? <a id="anker1" href="">Signup</a>
         </div>
@@ -76,7 +78,8 @@
         </div>
         <input type="file" name="" id="file" />
         <label for="file" id="labelFile"> Choose a Photo </label>
-        <input id="signUpSubmit" type="submit" value="SignUp" />
+        <!-- <input id="signUpSubmit" type="button" value="SignUp" /> -->
+        <button id="signUpSubmit"  type="button" class="btn btn-primary typebutton">SignUp</button>
         <div class="signup_link">
           If You are already an account?<a id="anker2" href="">Login</a>
         </div>
@@ -92,7 +95,9 @@
         <h1>Welcome to Abdul Qadeer Chat-app</h1>
       </div>
       <div class="button" >
-       <button id="profileButton" type="button" class="btn btn-primary">Continue</button>
+    <!-- <button id="profileButton" type="button" class="btn btn-primary">Continue</button> -->
+    <!-- <i class="fa-brands fa-facebook" id="profileButton"></i> -->
+    <i class="fa-solid fa-right-to-bracket" id="profileButton" onclick="profile()"></i>
       </div>
     </div>
 
