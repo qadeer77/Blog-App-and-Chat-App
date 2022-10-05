@@ -40,6 +40,14 @@ let signup = document.getElementById("signup");
 let login = document.getElementById("login");
 let anker1 = document.getElementById("anker1");
 let anker2 = document.getElementById("anker2");
+let all = document.getElementById("all");
+let profileButton = document.getElementById("profileButton");
+
+
+profileButton.addEventListener("click", () => {
+  all.style.display = "none";
+  window.location.href = "./#index2.html"
+})
 
 anker1.addEventListener("click", () => {
   login.style.display = "none";
@@ -89,9 +97,12 @@ loginSubmit.addEventListener("click", () => {
         const user = userCredential.user;
         const docRef = doc(db, "user", user.uid);
         const docSnap = await getDoc(docRef);
-
+        
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
+          login.style.display = "none";
+          loader1.style.display = "none";
+          all.style.display = "block";
         } else {
           console.log("No such document!");
         }
@@ -103,8 +114,14 @@ loginSubmit.addEventListener("click", () => {
           "Warning!",
           "User Not Found please you are go and registered your account!",
           "error"
-        );
-      });
+          );
+          login.style.display = "block"
+          loader1.style.display = "none";
+          all.style.display = "none";
+        })
+        // .finally(() => {
+        // });
+        loader1.style.display = "block";
   }
 });
 
@@ -236,15 +253,15 @@ signUpSubmit.addEventListener("click", async () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         swal("Warning!", "You have already Registered!", "error");
+      })
+      .finally(() => {
+        loader1.style.display = "none";
+        login.style.display = "block";
       });
+    
 
     signup.style.display = "none";
     loader1.style.display = "block";
-
-    setTimeout(() => {
-      loader1.style.display = "none";
-      login.style.display = "block";
-    }, 3000);
   }
 });
 

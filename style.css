@@ -154,3 +154,31 @@ input[type="file"] {
   justify-content: center;
   align-items: center;
 }
+
+.chat-app{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 10px;
+}
+.chat-app h1{
+  font-family: 'Baloo 2', cursive;
+}
+.button{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+}
+#all{
+  position: relative;
+  top: 40%;
+  left: 20%;
+  display: none;
+  background-color: white;
+  width: 55%;
+  height: 20%;
+  border-radius: 20px;
+}
+
