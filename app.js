@@ -41,12 +41,11 @@ let login = document.getElementById("login");
 let anker1 = document.getElementById("anker1");
 let anker2 = document.getElementById("anker2");
 let all = document.getElementById("all");
-// let profileButton = document.getElementById("profileButton");
+let profileButton = document.getElementById("profileButton");
 
-const profile = () => {
-  window.location.href = "./index2.html"
-}
-window.profile = profile;
+profileButton.addEventListener("click",() => {
+  window.location.assign("./index2.html")
+})
 
 anker1.addEventListener("click", () => {
   event.preventDefault();
