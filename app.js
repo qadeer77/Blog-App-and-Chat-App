@@ -180,12 +180,56 @@ signUpSubmit.addEventListener("click", async () => {
     createUserWithEmailAndPassword(auth, email1.value, password1.value)
       .then(async (userCredential) => {
         const user = userCredential.user;
+
         await setDoc(doc(db, "user", user.uid), {
           FullName: name.value,
           FatherName: fatherName.value,
           DateOfBirth: date.value,
           EmailAddress: email1.value,
           Password: password1.value,
+        });
+      })
+      .then(async () => {
+        const uploadFiles = (file) => {
+          return new Promise((resolve, reject) => {
+            const storage = getStorage();
+            const storageRef = ref(
+              storage,
+              `users/${auth.currentUser.uid}.png`
+            );
+            const uploadTask = uploadBytesResumable(storageRef, file);
+            uploadTask.on(
+              "state_changed",
+              (snapshot) => {
+                const progress =
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log("Upload is " + progress + "% done");
+                switch (snapshot.state) {
+                  case "paused":
+                    console.log("Upload is paused");
+                    break;
+                  case "running":
+                    console.log("Upload is running");
+                    break;
+                }
+              },
+              (error) => {
+                reject(error);
+              },
+              () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                  resolve(downloadURL);
+                });
+              }
+            );
+          });
+        };
+        let file = fileUplaod.files[0];
+        let url = await uploadFiles(file);
+
+        const washingtonRef = doc(db, "user", auth.currentUser.uid);
+        await updateDoc(washingtonRef, {
+          Profile: url,
         });
       })
       .catch((error) => {
@@ -201,49 +245,8 @@ signUpSubmit.addEventListener("click", async () => {
       loader1.style.display = "none";
       login.style.display = "block";
     }, 3000);
-
-    let file = fileUplaod.files[0];
-    let url = await uploadFiles(file);
-
-    const washingtonRef = doc(db, "user", auth.currentUser.uid);
-    await updateDoc(washingtonRef, {
-      Profile: url,
-    });
   }
 });
-
-const uploadFiles = (file) => {
-  return new Promise((resolve, reject) => {
-    const storage = getStorage();
-    const storageRef = ref(storage, `users/${auth.currentUser.uid}.png`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
-        }
-      },
-      (error) => {
-        reject(error);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          resolve(downloadURL);
-        });
-      }
-    );
-  });
-};
-
 
 window.onload = async () => {
   onAuthStateChanged(auth, (user) => {
