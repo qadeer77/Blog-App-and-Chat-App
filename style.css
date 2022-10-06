@@ -205,6 +205,39 @@ input[type="file"] {
   cursor: pointer;
 }
 
+#sidebarImage{
+  margin-top: 10px;
+  width: 200px;
+  object-fit: cover;
+  height: 200px;
+  border-radius: 100px;
+  cursor: pointer;
+  position: relative;
+  top: -30px;
+  left: -5px;
+}
+
+.whiteDiv{
+  background-color: white;
+  width: 230px;
+  height: 180px;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.anker a button{
+    margin: 10px 0px 0px 40px;
+}
+
+.whiteDiv p{
+  color: #075e54;
+  text-align: left;
+  margin-left: 5px;
+} 
+.whiteDiv p span{
+  color: black;
+}
+
 #serchInput{
   width: 220px;
   margin-top: 10px;
@@ -212,4 +245,50 @@ input[type="file"] {
 
 hr{
   width: 250px;
+}
+
+/* sidebar */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #adadad;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav h1{
+  margin: 20px;
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }

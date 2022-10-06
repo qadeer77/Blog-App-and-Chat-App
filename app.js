@@ -291,4 +291,30 @@ if(profileButton !== null){
 
 let image1 = document.getElementById("image1");
 image1.src = storageLocal.Profile;
+
+
+image1.addEventListener("click", () => {
+ let sidebar = document.getElementById("mySidenav");
+ sidebar.style.width = "250px";
+})
+
+let closeNav = document.getElementById("closeNav");
+closeNav.addEventListener("click", () => {
+  document.getElementById("mySidenav").style.width = "0";
+})
+
+let sidebarImage = document.getElementById("sidebarImage");
+sidebarImage.src = storageLocal.Profile
+
+let paraProfile = document.getElementById("paraProfile");
+paraProfile.innerHTML = storageLocal.FullName
+
+let paraFatherName = document.getElementById("paraFatherName");
+paraFatherName.innerHTML = storageLocal.FatherName;
+
+let paraDateOfBirth = document.getElementById("paraDateOfBirth");
+paraDateOfBirth.innerHTML = storageLocal.DateOfBirth;
+
+let paraEmailAddress = document.getElementById("paraEmailAddress");
+paraEmailAddress.innerHTML = storageLocal.EmailAddress
     
