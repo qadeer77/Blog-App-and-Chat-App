@@ -43,27 +43,30 @@ let anker2 = document.getElementById("anker2");
 let all = document.getElementById("all");
 let profileButton = document.getElementById("profileButton");
 
-profileButton.addEventListener("click",() => {
-  window.location.assign("./index2.html")
-})
 
+if (anker1 !== null){
 anker1.addEventListener("click", () => {
   event.preventDefault();
   login.style.display = "none";
   signup.style.display = "block";
 });
+}
 
+if (anker2 !== null){
 anker2.addEventListener("click", () => {
   event.preventDefault()
   signup.style.display = "none";
   login.style.display = "block";
 });
+}
 
 // variables
 let loginSubmit = document.getElementById("loginSubmit");
 let email = document.getElementById("email");
 let password = document.getElementById("password");
 
+
+if (loginSubmit !== null){
 loginSubmit.addEventListener("click", () => {
   event.preventDefault();
   const emptyEmailRegix = /^\s*$/.test(email.value);
@@ -99,6 +102,7 @@ loginSubmit.addEventListener("click", () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
+          localStorage.setItem("user", JSON.stringify( docSnap.data()))
           login.style.display = "none";
           loader1.style.display = "none";
           all.style.display = "block";
@@ -123,6 +127,7 @@ loginSubmit.addEventListener("click", () => {
         loader1.style.display = "block";
   }
 });
+}
 
 // signup
 let signUpSubmit = document.getElementById("signUpSubmit");
@@ -134,6 +139,7 @@ let password1 = document.getElementById("password1");
 let fileUplaod = document.getElementById("file");
 let loader1 = document.getElementById("loader1");
 
+if (signUpSubmit !== null){
 signUpSubmit.addEventListener("click", async () => {
   event.preventDefault();
 
@@ -263,6 +269,7 @@ signUpSubmit.addEventListener("click", async () => {
     loader1.style.display = "block";
   }
 });
+}
 
 window.onload = async () => {
   onAuthStateChanged(auth, (user) => {
@@ -273,3 +280,15 @@ window.onload = async () => {
     }
   });
 };
+
+if(profileButton !== null){
+  profileButton.addEventListener("click",() => {
+        window.location.href = "./index2.html";
+      })
+    }
+   const storageLocal =  JSON.parse(localStorage.getItem("user"));
+
+
+let image1 = document.getElementById("image1");
+image1.src = storageLocal.Profile;
+    
