@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 
 import {
@@ -271,10 +272,26 @@ signUpSubmit.addEventListener("click", async () => {
 });
 }
 
+
+let logOut = document.getElementById("logOut");
+if (logOut !== null){
+logOut.addEventListener("click", (event) => {
+  event.preventDefault();
+  signOut(auth).then(() => {
+    window.location.href = "./index.html";
+  }).catch((error) => {
+    console.log(error)
+  });
+})
+}
+
 window.onload = async () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
+      // if (uid){
+      //   window.location.href = "./index2.html"
+      // }
     } else {
       console.log("not login");
     }
@@ -290,31 +307,49 @@ if(profileButton !== null){
 
 
 let image1 = document.getElementById("image1");
+if (image1 !== null){
 image1.src = storageLocal.Profile;
-
 
 image1.addEventListener("click", () => {
  let sidebar = document.getElementById("mySidenav");
  sidebar.style.width = "250px";
 })
+}
 
 let closeNav = document.getElementById("closeNav");
+if (closeNav !== null){
 closeNav.addEventListener("click", () => {
   document.getElementById("mySidenav").style.width = "0";
 })
+}
+
 
 let sidebarImage = document.getElementById("sidebarImage");
+if (sidebarImage !== null){
 sidebarImage.src = storageLocal.Profile
+}
+
 
 let paraProfile = document.getElementById("paraProfile");
+if (paraProfile !== null){
 paraProfile.innerHTML = storageLocal.FullName
+}
 
 let paraFatherName = document.getElementById("paraFatherName");
+if (paraFatherName !== null){
 paraFatherName.innerHTML = storageLocal.FatherName;
+}
 
 let paraDateOfBirth = document.getElementById("paraDateOfBirth");
+if (paraDateOfBirth !== null){
 paraDateOfBirth.innerHTML = storageLocal.DateOfBirth;
+}
 
 let paraEmailAddress = document.getElementById("paraEmailAddress");
-paraEmailAddress.innerHTML = storageLocal.EmailAddress
+if (paraEmailAddress !== null){
+paraEmailAddress.innerHTML = storageLocal.EmailAddress;
+}
+
+
+
     
