@@ -14,6 +14,7 @@ import {
   getDoc,
   getFirestore,
   updateDoc,
+  getDocs,
 } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 import {
@@ -35,7 +36,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const db = getFirestore();
+const db = getFirestore(app);
 
 let signup = document.getElementById("signup");
 let login = document.getElementById("login");
@@ -289,14 +290,20 @@ window.onload = async () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
-      // if (uid){
-      //   window.location.href = "./index2.html"
-      // }
+      // console.log(uid)
+      // getUserFromDataBase(user.uid)
+      if(window.location.pathname === "/index.html"){  
+        window.location.href = ("profile.html");
+      }
     } else {
-      console.log("not login");
+      if(window.location.pathname === "/profile.html"){  
+        window.location.href = ("index.html");
+      }
     }
   });
 };
+
+
 
 if(profileButton !== null){
   profileButton.addEventListener("click",() => {
