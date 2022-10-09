@@ -14,6 +14,9 @@ import {
   getDoc,
   getFirestore,
   updateDoc,
+  collection,
+  query,
+  where,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
@@ -37,6 +40,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
+const colRef = collection(db, "user")
 
 let signup = document.getElementById("signup");
 let login = document.getElementById("login");
@@ -291,7 +295,6 @@ window.onload = async () => {
     if (user) {
       const uid = user.uid;
       // console.log(uid)
-      // getUserFromDataBase(user.uid)
       if(window.location.pathname === "/index.html"){  
         window.location.href = ("profile.html");
       }
@@ -303,11 +306,27 @@ window.onload = async () => {
   });
 };
 
+let images = document.getElementById("images");
+
+getDocs(colRef)
+.then((snapshot) => {
+  let users = [];
+  snapshot.docs.forEach((doc) => {
+    // const q = query(collection(db, "users"), where("email", "!=", email));
+    users.push({...doc.data(), id:doc.id})
+  })
+  images.src = users[0].Profile
+  console.log(users)
+})
+.catch((error) => {
+  console.log(error);
+})
+
 
 
 if(profileButton !== null){
   profileButton.addEventListener("click",() => {
-        window.location.href = "./index2.html";
+        window.location.href = "./profile.html";
       })
     }
    const storageLocal =  JSON.parse(localStorage.getItem("user"));
