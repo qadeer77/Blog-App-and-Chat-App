@@ -193,7 +193,7 @@ input[type="file"] {
 
 /* profile */
 #profile{
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 #image1{
@@ -291,4 +291,116 @@ hr{
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+.ul ul li{
+  list-style-type: none;
+  padding: 20px 0px 0px 0px;
+  cursor: pointer;
+}
+
+.ul ul li:hover{
+  color: blue;
+}
+
+.ul ul li i{
+  position: relative;
+  left: -15px;
+  cursor: pointer;
+  color: rgb(95, 93, 93);
+}
+
+.ul ul li i:hover{
+  color: blue;
+}
+
+.image{
+  background: white;
+  height: 655px;
+  width: 240px;
+}
+
+.hedaingandimages{
+  position: relative;
+  left: 15px;
+}
+
+#name{
+  font-family: 'Baloo 2', cursive;
+  padding: 10px 0px 0px 0px;
+}
+
+#menu{
+  font-family: "Baloo Bhaijaan 2", cursive;
+}
+
+nav{
+  background-color: white !important;
+  width: 1110px;
+  height: 50px;
+  position: relative;
+  left: 12px;
+}
+
+#facebook{
+  font-size: 45px;
+  position: relative;
+  left: 50px;
+  color: #3b5998;
+}
+
+#span{
+  position: relative;
+  left: 350px;
+  font-size: 30px;
+  font-family: 'Baloo 2', cursive;
+}
+
+#post{
+  position: relative;
+  left: 700px;
+  font-size: 40px;
+  color: rgb(95, 93, 93);
+}
+
+#post:hover{
+  color: black;
+}
+
+#meassger{
+  position: relative;
+  left: 700px;
+  font-size: 40px;
+  color: rgb(95, 93, 93);
+}
+
+#meassger:hover{
+  color: black;
+}
+
+/* modal  */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100000px;
+  width: 100%;
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  position: relative;
+  top: 100px;
+  left: 30px;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
 }

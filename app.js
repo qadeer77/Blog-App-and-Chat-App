@@ -306,24 +306,6 @@ window.onload = async () => {
   });
 };
 
-let images = document.getElementById("images");
-
-getDocs(colRef)
-.then((snapshot) => {
-  let users = [];
-  snapshot.docs.forEach((doc) => {
-    // const q = query(collection(db, "users"), where("email", "!=", email));
-    users.push({...doc.data(), id:doc.id})
-  })
-  images.src = users[0].Profile
-  console.log(users)
-})
-.catch((error) => {
-  console.log(error);
-})
-
-
-
 if(profileButton !== null){
   profileButton.addEventListener("click",() => {
         window.location.href = "./profile.html";
@@ -335,6 +317,9 @@ if(profileButton !== null){
 let image1 = document.getElementById("image1");
 if (image1 !== null){
 image1.src = storageLocal.Profile;
+
+let name = document.getElementById("name");
+name.innerHTML = storageLocal.FullName
 
 image1.addEventListener("click", () => {
  let sidebar = document.getElementById("mySidenav");
@@ -376,6 +361,22 @@ if (paraEmailAddress !== null){
 paraEmailAddress.innerHTML = storageLocal.EmailAddress;
 }
 
+var modal = document.getElementById("modal2");
+let post = document.getElementById("post");
+let close = document.getElementById("close");
+
+post.addEventListener("click", () => {
+  modal.style.display = "block";
+})
+
+close.addEventListener("click", () => {
+  modal.style.display = "none";
+})
+
+
+ var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
 
 
     
