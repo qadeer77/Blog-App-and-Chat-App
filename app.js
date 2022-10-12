@@ -15,6 +15,7 @@ import {
   getFirestore,
   updateDoc,
   collection,
+  addDoc,
   query,
   where,
   getDocs,
@@ -108,7 +109,7 @@ loginSubmit.addEventListener("click", () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
-          localStorage.setItem("user", JSON.stringify( docSnap.data()))
+          localStorage.setItem("user", JSON.stringify(docSnap.data()))
           login.style.display = "none";
           loader1.style.display = "none";
           all.style.display = "block";
@@ -402,9 +403,16 @@ var quill = new Quill('#editor', {
 
 
 let textPost = document.querySelector(".profilePost");
-textPost.addEventListener("click", () => {
+textPost.addEventListener("click", async() => {
   let data = quill.root.innerHTML;
-  console.log(data)
+  await addDoc(collection(db, "postingText"), {
+    value: data,
+    timestamp: new Date(),
+    name: storageLocal.FullName,
+    fatherName: storageLocal.FatherName,
+    email: storageLocal.EmailAddress
+  });
+  // console.log("Document written with ID: ", docRef.id);
 })
 
     
