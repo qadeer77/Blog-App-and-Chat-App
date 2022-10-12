@@ -412,7 +412,14 @@ textPost.addEventListener("click", async() => {
     fatherName: storageLocal.FatherName,
     email: storageLocal.EmailAddress
   });
-  // console.log("Document written with ID: ", docRef.id);
 })
 
-    
+
+const getData = async() => {
+const querySnapshot = await getDocs(collection(db, "postingText"));
+querySnapshot.forEach((doc) => {
+  console.log(doc.id, " => ", doc.data());
+});
+};
+
+getData()
