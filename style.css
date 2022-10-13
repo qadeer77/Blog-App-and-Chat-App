@@ -403,3 +403,36 @@ nav{
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
+
+.profileList{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 30px;
+  left: 300px;
+  width: 550px;
+  background: white;
+  border-radius: 10px;
+}
+
+#profileImg{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 100px;
+  position: relative;
+  left: -85px;
+  margin-top: 10px;
+}
+
+#paraprofile{
+  position: relative;
+  left: -80px;
+  top: 10px;
+}
+
+#paraDate{
+  position: relative;
+  top: 30px;
+  left: -180px;
+}

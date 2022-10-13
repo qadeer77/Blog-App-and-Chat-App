@@ -366,13 +366,17 @@ var modal = document.getElementById("modal2");
 let post = document.getElementById("post");
 let close = document.getElementById("close");
 
+if (post !== null){
 post.addEventListener("click", () => {
   modal.style.display = "block";
 })
+}
 
+if (close !== null){
 close.addEventListener("click", () => {
   modal.style.display = "none";
 })
+}
 
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -407,18 +411,28 @@ textPost.addEventListener("click", async() => {
   let data = quill.root.innerHTML;
   await addDoc(collection(db, "postingText"), {
     value: data,
-    timestamp: new Date(),
+    timestamp: moment().format('llll'),
     name: storageLocal.FullName,
     fatherName: storageLocal.FatherName,
-    email: storageLocal.EmailAddress
+    email: storageLocal.EmailAddress,
+    profileImage: storageLocal.Profile
   });
 })
 
+let listProfile = document.getElementById("listProfile");
 
 const getData = async() => {
 const querySnapshot = await getDocs(collection(db, "postingText"));
 querySnapshot.forEach((doc) => {
   console.log(doc.id, " => ", doc.data());
+  let docData = doc.data();
+  listProfile.innerHTML += `
+  <div class="profileList">
+  <img src=${docData.profileImage} id="profileImg">
+  <h6 id="paraprofile">${docData.name}</h6>
+  <p id="paraDate">${docData.timestamp}</p>
+  </div>
+`
 });
 };
 
