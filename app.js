@@ -296,13 +296,13 @@ window.onload = async () => {
     if (user) {
       const uid = user.uid;
       // console.log(uid)
-      if(window.location.pathname === "/index.html"){  
-        window.location.href = ("profile.html");
-      }
+      // if(window.location.pathname === "/index.html"){  
+      //   window.location.href = ("profile.html");
+      // }
     } else {
-      if(window.location.pathname === "/profile.html"){  
-        window.location.href = ("index.html");
-      }
+      // if(window.location.pathname === "/profile.html"){  
+      //   window.location.href = ("index.html");
+      // }
     }
   });
 };
@@ -427,10 +427,15 @@ querySnapshot.forEach((doc) => {
   console.log(doc.id, " => ", doc.data());
   let docData = doc.data();
   listProfile.innerHTML += `
-  <div class="profileList">
+  <div id="profilelist">
+    <li id="list">
   <img src=${docData.profileImage} id="profileImg">
   <h6 id="paraprofile">${docData.name}</h6>
   <p id="paraDate">${docData.timestamp}</p>
+  <div id="paravalue">
+      ${docData.value} 
+  </div>
+  </li>
   </div>
 `
 });
