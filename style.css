@@ -156,23 +156,23 @@ input[type="file"] {
   align-items: center;
 }
 
-.chat-app{
+.chat-app {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   top: 10px;
 }
-.chat-app h1{
-  font-family: 'Baloo 2', cursive;
+.chat-app h1 {
+  font-family: "Baloo 2", cursive;
 }
-.button{
+.button {
   display: flex;
   justify-content: center;
   position: relative;
   top: 10px;
 }
-#all{
+#all {
   position: relative;
   top: 40%;
   left: 20%;
@@ -183,20 +183,18 @@ input[type="file"] {
   border-radius: 20px;
 }
 
-#profileButton{
+#profileButton {
   font-size: 50px;
   color: rgb(83, 83, 168);
   cursor: pointer;
 }
 
-
-
 /* profile */
-#profile{
+#profile {
   background-color: whitesmoke;
 }
 
-#image1{
+#image1 {
   margin-top: 10px;
   width: 55px;
   object-fit: cover;
@@ -205,7 +203,7 @@ input[type="file"] {
   cursor: pointer;
 }
 
-#sidebarImage{
+#sidebarImage {
   margin-top: 10px;
   width: 200px;
   object-fit: cover;
@@ -217,7 +215,7 @@ input[type="file"] {
   left: -5px;
 }
 
-.whiteDiv{
+.whiteDiv {
   background-color: white;
   width: 230px;
   height: 180px;
@@ -225,25 +223,25 @@ input[type="file"] {
   border-radius: 10px;
 }
 
-.anker a button{
-    margin: 10px 0px 0px 40px;
+.anker a button {
+  margin: 10px 0px 0px 40px;
 }
 
-.whiteDiv p{
+.whiteDiv p {
   color: #075e54;
   text-align: left;
   margin-left: 5px;
-} 
-.whiteDiv p span{
+}
+.whiteDiv p span {
   color: black;
 }
 
-#serchInput{
+#serchInput {
   width: 220px;
   margin-top: 10px;
 }
 
-hr{
+hr {
   width: 250px;
 }
 
@@ -261,10 +259,10 @@ hr{
   padding-top: 60px;
 }
 
-.sidenav h1{
+.sidenav h1 {
   margin: 20px;
   text-align: center;
-  font-family: 'Baloo 2', cursive;
+  font-family: "Baloo 2", cursive;
 }
 
 .sidenav a {
@@ -289,91 +287,95 @@ hr{
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 
-.ul ul li{
+.ul ul li {
   list-style-type: none;
   padding: 20px 0px 0px 0px;
   cursor: pointer;
 }
 
-.ul ul li:hover{
+.ul ul li:hover {
   color: blue;
 }
 
-.ul ul li i{
+.ul ul li i {
   position: relative;
   left: -15px;
   cursor: pointer;
   color: rgb(95, 93, 93);
 }
 
-.ul ul li i:hover{
+.ul ul li i:hover {
   color: blue;
 }
 
-.image{
+.image {
   background: white;
   height: 655px;
   width: 240px;
   position: fixed;
 }
 
-.hedaingandimages{
+.hedaingandimages {
   position: relative;
   left: 15px;
 }
 
-#name{
-  font-family: 'Baloo 2', cursive;
+#name {
+  font-family: "Baloo 2", cursive;
   padding: 10px 0px 0px 0px;
 }
 
-#menu{
+#menu {
   font-family: "Baloo Bhaijaan 2", cursive;
 }
 
-nav{
+nav {
   background-color: white !important;
   height: 50px;
   margin-left: 251px;
 }
 
-#facebook{
+#facebook {
   font-size: 45px;
   position: relative;
   left: 50px;
   color: #3b5998;
 }
 
-#span{
+#span {
   position: relative;
   left: 350px;
   font-size: 30px;
-  font-family: 'Baloo 2', cursive;
+  font-family: "Baloo 2", cursive;
 }
 
-#post{
+#post {
   position: relative;
   left: 700px;
   font-size: 40px;
   color: rgb(95, 93, 93);
 }
 
-#post:hover{
+#post:hover {
   color: black;
 }
 
-#meassger{
+#meassger {
   position: relative;
   left: 700px;
   font-size: 40px;
   color: rgb(95, 93, 93);
 }
 
-#meassger:hover{
+#meassger:hover {
   color: black;
 }
 
@@ -387,8 +389,8 @@ nav{
   width: 100%;
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
@@ -403,7 +405,7 @@ nav{
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
-#profilelist{
+#profilelist {
   display: flex;
   justify-content: flex-start;
   margin-top: 30px;
@@ -415,31 +417,31 @@ nav{
   top: 50px;
 }
 
-#list{
+#list {
   list-style-type: none;
 }
 
-#profileImg{
+#profileImg {
   width: 60px;
   height: 60px;
   object-fit: cover;
 }
 
-#profileImg{
+#profileImg {
   border-radius: 100px;
   margin: 10px 0px 0px 20px;
 }
 
-#paraprofile{
+#paraprofile {
   margin: -60px 0px 0px 90px;
 }
 
-#paraDate{
+#paraDate {
   position: relative;
   left: 90px;
 }
 
-#paravalue{
+#paravalue {
   margin: 50px 0px 0px 50px;
   position: relative;
   top: -15px;
