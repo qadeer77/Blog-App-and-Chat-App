@@ -406,7 +406,10 @@ var quill = new Quill("#editor", {
   theme: "snow",
 });
 
+
 let textPost = document.querySelector(".profilePost");
+let allIDs = [];
+let unsub;
 textPost.addEventListener("click", async () => {
   let data = quill.root.innerHTML;
   await addDoc(collection(db, "postingText"), {
@@ -422,22 +425,29 @@ textPost.addEventListener("click", async () => {
 let listProfile = document.getElementById("listProfile");
 
 const getData = async () => {
-  const querySnapshot = await getDocs(collection(db, "postingText"));
-  querySnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
-    let docData = doc.data();
-    listProfile.innerHTML += `
-  <div id="profilelist">
-    <li id="list">
-  <img src=${docData.profileImage} id="profileImg">
-  <h6 id="paraprofile">${docData.name}</h6>
-  <p id="paraDate">${docData.timestamp}</p>
-  <div id="paravalue">
-      ${docData.value} 
-  </div>
-  </li>
-  </div>
-`;
+  // const q = query(collection(db, "cities"), where("state", "==", "CA"));
+   unsub = onSnapshot(
+   query(collection(db, "postingText"), orderBy("timestamp", "desc")),
+   (querySnapshot) => {
+   allIDs = [];
+  //  const querySnapshot = await getDocs(collection(db, "postingText"));
+   querySnapshot.forEach((doc) => {
+     console.log(doc.id, " => ", doc.data());
+     allIDs.push(doc.id);
+     let docData = doc.data();
+     listProfile.innerHTML += `
+   <div id="profilelist">
+     <li id="list">
+   <img src=${docData.profileImage} id="profileImg">
+   <h6 id="paraprofile">${docData.name}</h6>
+   <p id="paraDate">${docData.timestamp}</p>
+   <div id="paravalue">
+       ${docData.value} 
+   </div>
+   </li>
+   </div>
+ `;
+  });
   });
 };
 
