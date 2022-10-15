@@ -451,8 +451,16 @@ const getData = async () => {
    <div id="paravalue">
        ${docData.value} 
    </div>
-   </li>
+   <div id="like">
+   <i class="fa-regular fa-thumbs-up"></i>
+   Like
    </div>
+   <div>
+   <i class="fa-regular fa-comment"></i>
+   Comment
+   </div>
+   </div>
+   </li>
  `;
   });
   });
