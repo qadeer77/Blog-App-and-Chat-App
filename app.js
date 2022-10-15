@@ -30,6 +30,7 @@ import {
   getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDXkLRIwYe2qWYcvsx4qiq7eX4yq_ZmXAg",
   authDomain: "chat-app-82a8c.firebaseapp.com",
@@ -408,10 +409,14 @@ var quill = new Quill("#editor", {
 
 
 let textPost = document.querySelector(".profilePost");
+let spinnerNone = document.querySelector(".spinnerNone");
 let allIDs = [];
 let unsub;
+try{
 textPost.addEventListener("click", async () => {
   let data = quill.root.innerHTML;
+  textPost.style.display = "none";
+  spinnerNone.style.display = "block";
   await addDoc(collection(db, "postingText"), {
     value: data,
     timestamp: moment().format("llll"),
@@ -420,6 +425,8 @@ textPost.addEventListener("click", async () => {
     email: storageLocal.EmailAddress,
     profileImage: storageLocal.Profile,
   });
+  modal.style.display = "none";
+  window.location.reload();
 });
 
 let listProfile = document.getElementById("listProfile");
@@ -450,5 +457,8 @@ const getData = async () => {
   });
   });
 };
-
 getData();
+}
+catch(err){
+  console.log(err);
+}
