@@ -340,7 +340,6 @@ hr {
 nav {
   background-color: white !important;
   height: 50px;
-  margin-left: 251px;
 }
 
 #facebook {
@@ -413,8 +412,6 @@ nav {
   margin-left: 40px;
   width: 1000px;
   border-radius: 10px;
-  position: relative;
-  top: 50px;
 }
 
 #list {
@@ -492,9 +489,18 @@ nav {
 }
 
 #like{
-  /* margin: 160px 0px 0px 0px;
+  margin-left: 50px;
+  font-size: 20px;
+  cursor: pointer;
   position: relative;
-  top: -10px;
-  left: -100px;
-  font-size: 20px; */
+  top: 5px;
+}
+
+#comment{
+  margin-left: 50px;
+  position: relative;
+  left: 125px;
+  top: -25px;
+  font-size: 20px;
+  cursor: pointer;
 }

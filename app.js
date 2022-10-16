@@ -455,7 +455,7 @@ const getData = async () => {
    <i class="fa-regular fa-thumbs-up"></i>
    Like
    </div>
-   <div>
+   <div id="comment">
    <i class="fa-regular fa-comment"></i>
    Comment
    </div>
