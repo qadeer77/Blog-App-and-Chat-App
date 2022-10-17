@@ -439,7 +439,7 @@ const getData = async () => {
    allIDs = [];
   //  const querySnapshot = await getDocs(collection(db, "postingText"));
    querySnapshot.forEach((doc) => {
-     console.log(doc.id, " => ", doc.data());
+    //  console.log(doc.id, " => ", doc.data());
      allIDs.push(doc.id);
      let docData = doc.data();
      listProfile.innerHTML += `
@@ -451,7 +451,7 @@ const getData = async () => {
    <div id="paravalue">
        ${docData.value} 
    </div>
-   <div id="like">
+   <div id="like" class="likeIcon">
    <i class="fa-regular fa-thumbs-up"></i>
    Like
    </div>
@@ -463,10 +463,16 @@ const getData = async () => {
    </li>
  `;
   });
-  });
+  let likeIcon = document.querySelector(".likeIcon")
+  console.log(likeIcon)
+});
 };
 getData();
+
+
+
 }
 catch(err){
   console.log(err);
 }
+
