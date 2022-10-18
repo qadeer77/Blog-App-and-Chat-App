@@ -451,7 +451,7 @@ const getData = async () => {
    <div id="paravalue">
        ${docData.value} 
    </div>
-   <div id="like" onClick='${like()}'>
+   <div id="like">
    <i class="fa-regular fa-thumbs-up"></i>
    Like
    </div>
@@ -463,13 +463,16 @@ const getData = async () => {
    </li>
  `;
   });
+  let like = document.querySelectorAll("#like");
+  like.forEach(element => {
+    element.addEventListener("click", () => {
+       element.style.color = "blue";
+    })
+  });
 });
 };
-getData();
 
-const like = () => {
-  console.log(like)
-}
+getData();
 
 }
 catch(err){
