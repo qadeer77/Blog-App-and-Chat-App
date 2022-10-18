@@ -451,7 +451,7 @@ const getData = async () => {
    <div id="paravalue">
        ${docData.value} 
    </div>
-   <div id="like">
+   <div id="like" onClick='${like()}'>
    <i class="fa-regular fa-thumbs-up"></i>
    Like
    </div>
@@ -467,7 +467,9 @@ const getData = async () => {
 };
 getData();
 
-
+const like = () => {
+  console.log(like)
+}
 
 }
 catch(err){
