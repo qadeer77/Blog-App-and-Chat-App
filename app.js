@@ -451,7 +451,7 @@ const getData = async () => {
    <div id="paravalue">
        ${docData.value} 
    </div>
-   <div id="like" class="likeIcon">
+   <div id="like">
    <i class="fa-regular fa-thumbs-up"></i>
    Like
    </div>
@@ -463,8 +463,6 @@ const getData = async () => {
    </li>
  `;
   });
-  let likeIcon = document.querySelector(".likeIcon")
-  console.log(likeIcon)
 });
 };
 getData();
