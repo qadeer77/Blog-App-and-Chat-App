@@ -488,12 +488,22 @@ nav {
   transform: rotate(0deg) scale(1);
 }
 
+#unlike{
+  margin-left: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  top: 5px;
+}
+
 #like{
   margin-left: 50px;
   font-size: 20px;
   cursor: pointer;
   position: relative;
   top: 5px;
+  color: blue;
+  display: none;
 }
 
 #comment{
