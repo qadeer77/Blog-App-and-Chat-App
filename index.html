@@ -43,7 +43,6 @@
           <span></span>
           <label>Password</label>
         </div>
-        <!-- <input id="loginSubmit" type="button" value="Login" /> -->
         <button
           id="loginSubmit"
           type="button"
@@ -73,7 +72,6 @@
         <div class="txt_field">
           <input id="date" type="date" required />
           <span></span>
-          <!-- <label>Date Of Birth</label> -->
         </div>
         <div class="txt_field">
           <input id="email1" type="email" required />
@@ -87,7 +85,6 @@
         </div>
         <input type="file" name="" id="file" />
         <label for="file" id="labelFile"> Choose a Photo </label>
-        <!-- <input id="signUpSubmit" type="button" value="SignUp" /> -->
         <button
           id="signUpSubmit"
           type="button"
@@ -101,13 +98,14 @@
       </form>
     </div>
 
-    <div class="spinner-grow loader" id="loader1" role="status">
-      <span class="sr-only"></span>
+    <div class="half-circle-spinner" id="loader1">
+      <div class="circle circle-1"></div>
+      <div class="circle circle-2"></div>
     </div>
 
     <div id="all">
       <div class="chat-app">
-        <h1>Welcome to Abdul Qadeer Chat-app</h1>
+        <h1>Welcome <span id="profileName"></span></h1>
       </div>
       <div class="button">
         <i class="fa-solid fa-right-to-bracket" id="profileButton"></i>

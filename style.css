@@ -127,14 +127,51 @@ input[type="submit"]:hover {
   display: none;
 }
 
-.loader {
+#loader1 {
   display: none;
+  position: relative;
+  left: 650px;
+  top: 250px;
+}
+
+.half-circle-spinner,
+.half-circle-spinner * {
+  box-sizing: border-box;
+}
+
+.half-circle-spinner {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.half-circle-spinner .circle {
+  content: "";
   position: absolute;
-  top: 45%;
-  left: 45%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: calc(60px / 10) solid transparent;
+}
+
+.half-circle-spinner .circle.circle-1 {
+  border-top-color: #ff1d5e;
+  animation: half-circle-spinner-animation 1s infinite;
+}
+
+.half-circle-spinner .circle.circle-2 {
+  border-bottom-color: #ff1d5e;
+  animation: half-circle-spinner-animation 1s infinite alternate;
+}
+
+@keyframes half-circle-spinner-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 input[type="file"] {
@@ -444,73 +481,11 @@ nav {
   top: -15px;
 }
 
-.spinnerNone{
+.spinnerNone {
   display: none;
   width: 100px;
 }
 
-.profilePost{
+.profilePost {
   width: 100px;
-}
-
-
-.fulfilling-bouncing-circle-spinner, .fulfilling-bouncing-circle-spinner * {
-  box-sizing: border-box;
-}
-
-.fulfilling-bouncing-circle-spinner {
-  height: 60px;
-  width: 60px;
-  position: relative;
-  animation: fulfilling-bouncing-circle-spinner-animation infinite 4000ms ease;
-}
-
-.fulfilling-bouncing-circle-spinner .orbit {
-  height: 60px;
-  width: 60px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  border: calc(60px * 0.03) solid #ff1d5e;
-  animation: fulfilling-bouncing-circle-spinner-orbit-animation infinite 4000ms ease;
-}
-
-.fulfilling-bouncing-circle-spinner .circle {
-  height: 60px;
-  width: 60px;
-  color: #ff1d5e;
-  display: block;
-  border-radius: 50%;
-  position: relative;
-  border: calc(60px * 0.1) solid #ff1d5e;
-  animation: fulfilling-bouncing-circle-spinner-circle-animation infinite 4000ms ease;
-  transform: rotate(0deg) scale(1);
-}
-
-#unlike{
-  margin-left: 50px;
-  font-size: 20px;
-  cursor: pointer;
-  position: relative;
-  top: 5px;
-}
-
-#like{
-  margin-left: 50px;
-  font-size: 20px;
-  cursor: pointer;
-  position: relative;
-  top: 5px;
-  color: blue;
-  display: none;
-}
-
-#comment{
-  margin-left: 50px;
-  position: relative;
-  left: 125px;
-  top: -25px;
-  font-size: 20px;
-  cursor: pointer;
 }
