@@ -54,6 +54,7 @@ window.onload = async () => {
       const docRef = doc(db, "user", uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
+        localStorage.setItem("user",JSON.stringify(docSnap.data()))
         var data = docSnap.data();
         var image1 = document.getElementById("image1");
         image1.src = data.Profile;
@@ -138,13 +139,17 @@ var quill = new Quill("#editor", {
   theme: "snow",
 });
 
+
 let textPost = document.querySelector(".profilePost");
 let spinnerNone = document.querySelector(".spinnerNone");
 let allIDs = [];
 let unsub;
 try {
   textPost.addEventListener("click", async () => {
+    let storageLocal=  JSON.parse(localStorage.getItem("user"));
     let data = quill.root.innerHTML;
+    textPost.style.display = "none";
+    spinnerNone.style.display = "block";
     await addDoc(collection(db, "postingText"), {
       value: data,
       timestamp: moment().format("llll"),
@@ -176,12 +181,17 @@ try {
    <div id="paravalue">
        ${docData.value} 
    </div>
-   <div id="like>
-   
+   <div id="like" onclick="like()">
+   <i class="fa-regular fa-thumbs-up"></i>
+   like
+   </div>
+   <div id="likes">
+   <i class="fa-solid fa-thumbs-up"></i>
+   like
    </div>
    <div id="comment">
-   
-   
+   <i class="fa-regular fa-comment"></i>
+   comment
    </div>
    </div>
    </li>
@@ -192,6 +202,16 @@ try {
   };
 
   getData();
+
+
+  const like = () => {
+    let liked = document.getElementById("like");
+    let likeds = document.getElementById("likes");
+    console.log(liked)
+    console.log(likeds);
+  }
+  window.like = like;
+
 } catch (err) {
   console.log(err);
 }

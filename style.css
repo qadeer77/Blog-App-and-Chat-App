@@ -489,3 +489,36 @@ nav {
 .profilePost {
   width: 100px;
 }
+
+
+#like{
+  float: left;
+  position: relative;
+  left: 60px;
+  top: -20px;
+  font-size: 20px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+#likes{
+  float: left;
+  position: relative;
+  left: 60px;
+  top: -20px;
+  font-size: 20px;
+  margin-top: 40px;
+  color: blue;
+  display: none;
+  cursor: pointer;
+}
+
+#comment{
+ float: left;
+ position: relative;
+ left: 150px;
+ top: -20px;
+ font-size: 20px;
+ margin-top: 40px;
+ cursor: pointer;
+}
