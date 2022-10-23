@@ -185,7 +185,7 @@ try {
    <i class="fa-regular fa-thumbs-up"></i>
    like
    </div>
-   <div id="likes">
+   <div id="likes" onclick="likes()">
    <i class="fa-solid fa-thumbs-up"></i>
    like
    </div>
@@ -205,12 +205,15 @@ try {
 
 
   const like = () => {
-    let liked = document.getElementById("like");
-    let likeds = document.getElementById("likes");
-    console.log(liked)
-    console.log(likeds);
+      
   }
   window.like = like;
+
+  const likes = () => {
+
+  }
+
+  window.likes = likes;
 
 } catch (err) {
   console.log(err);
