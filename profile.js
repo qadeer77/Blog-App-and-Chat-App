@@ -54,7 +54,7 @@ window.onload = async () => {
       const docRef = doc(db, "user", uid);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        localStorage.setItem("user",JSON.stringify(docSnap.data()))
+        localStorage.setItem("user", JSON.stringify(docSnap.data()));
         var data = docSnap.data();
         var image1 = document.getElementById("image1");
         image1.src = data.Profile;
@@ -139,14 +139,13 @@ var quill = new Quill("#editor", {
   theme: "snow",
 });
 
-
 let textPost = document.querySelector(".profilePost");
 let spinnerNone = document.querySelector(".spinnerNone");
 let allIDs = [];
 let unsub;
 try {
   textPost.addEventListener("click", async () => {
-    let storageLocal=  JSON.parse(localStorage.getItem("user"));
+    let storageLocal = JSON.parse(localStorage.getItem("user"));
     let data = quill.root.innerHTML;
     textPost.style.display = "none";
     spinnerNone.style.display = "block";
@@ -181,11 +180,11 @@ try {
    <div id="paravalue">
        ${docData.value} 
    </div>
-   <div id="like" onclick="like()">
+   <div id="unlike" onclick="unLike()">
    <i class="fa-regular fa-thumbs-up"></i>
    like
    </div>
-   <div id="likes" onclick="likes()">
+   <div id="like" onclick="like()" class="d-none">
    <i class="fa-solid fa-thumbs-up"></i>
    like
    </div>
@@ -203,18 +202,24 @@ try {
 
   getData();
 
+  const unLike = () => {
+    let unlike = document.getElementById("unlike");
+    unlike.className = "d-none";
+    let like = document.getElementById("like");
+    like.className = "d-block";
+    console.log(unlike, like);
+  };
+  window.unLike = unLike;
 
   const like = () => {
-      
-  }
+    let unlike = document.getElementById("unlike");
+    unlike.className = "d-block";
+    let like = document.getElementById("like");
+    like.className = "d-none";
+    console.log(unlike, like);
+  };
+
   window.like = like;
-
-  const likes = () => {
-
-  }
-
-  window.likes = likes;
-
 } catch (err) {
   console.log(err);
 }
