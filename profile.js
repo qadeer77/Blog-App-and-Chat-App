@@ -55,6 +55,7 @@ window.onload = async () => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         localStorage.setItem("user", JSON.stringify(docSnap.data()));
+        localStorage.setItem("userId", JSON.stringify(docSnap.id));
         var data = docSnap.data();
         var image1 = document.getElementById("image1");
         image1.src = data.Profile;
@@ -141,11 +142,10 @@ var quill = new Quill("#editor", {
 
 let textPost = document.querySelector(".profilePost");
 let spinnerNone = document.querySelector(".spinnerNone");
-let allIDs = [];
-let unsub;
 try {
   textPost.addEventListener("click", async () => {
     let storageLocal = JSON.parse(localStorage.getItem("user"));
+    let getUser = JSON.parse(localStorage.getItem("userId"));
     let data = quill.root.innerHTML;
     textPost.style.display = "none";
     spinnerNone.style.display = "block";
@@ -156,13 +156,17 @@ try {
       fatherName: storageLocal.FatherName,
       email: storageLocal.EmailAddress,
       profileImage: storageLocal.Profile,
+      likes: [],
+      userId: getUser,
     });
     modal.style.display = "none";
     window.location.reload();
   });
-
+  
   let listProfile = document.getElementById("listProfile");
-
+  let unsub;
+  let allIDs = [];
+  
   const getData = async () => {
     unsub = onSnapshot(
       query(collection(db, "postingText"), orderBy("timestamp", "desc")),
@@ -180,14 +184,23 @@ try {
    <div id="paravalue">
        ${docData.value} 
    </div>
-   <div id="unlike" onclick="unLike()">
-   <i class="fa-regular fa-thumbs-up"></i>
-   like
-   </div>
-   <div id="like" onclick="like()" class="d-none">
-   <i class="fa-solid fa-thumbs-up"></i>
-   like
-   </div>
+   ${
+    docData.likes.indexOf(JSON.parse(localStorage.getItem("userId"))) !== -1
+    ? 
+    `
+  <div id="like" onclick="like()">
+  <i class="fa-solid fa-thumbs-up"></i>
+  like
+  </div>  
+  `
+    : 
+    `
+    <div id="unlike" onclick="unLike()">
+    <i class="fa-regular fa-thumbs-up"></i>
+    like
+    </div>
+    `
+  }
    <div id="comment">
    <i class="fa-regular fa-comment"></i>
    comment
@@ -202,21 +215,14 @@ try {
 
   getData();
 
+
+
   const unLike = () => {
-    let unlike = document.getElementById("unlike");
-    unlike.className = "d-none";
-    let like = document.getElementById("like");
-    like.className = "d-block";
-    console.log(unlike, like);
+    
   };
   window.unLike = unLike;
-
   const like = () => {
-    let unlike = document.getElementById("unlike");
-    unlike.className = "d-block";
-    let like = document.getElementById("like");
-    like.className = "d-none";
-    console.log(unlike, like);
+
   };
 
   window.like = like;
