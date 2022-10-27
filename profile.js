@@ -195,7 +195,7 @@ try {
   `
     : 
     `
-    <div id="unlike" onclick="unLike()">
+    <div id="unlike" onclick="unLike('${doc.id}')">
     <i class="fa-regular fa-thumbs-up"></i>
     like
     </div>
@@ -217,8 +217,10 @@ try {
 
 
 
-  const unLike = () => {
-    
+  const unLike = (id) => {
+    let profilelist = document.getElementById("profilelist");
+    console.log(profilelist);
+    console.log(id);
   };
   window.unLike = unLike;
   const like = () => {
